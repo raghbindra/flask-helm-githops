@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask app with Redis cache</title>
+</head>
+<body style="text-align: center; font-family: Arial, sans-serif;">
+
+    <h1>{{hello}}</h1>
+    <p>This page has been viewed <strong>{{ count }}</strong> times.</p>
+    <p><i>Secret password (from Secret!): {{ password }}</i></p>
+
+    <!-- 👇 Meme image -->
+    <img src="{{ url_for('static', filename='ragh-meme.png') }}" alt="Raghbindra Meme" width="400"/>
+
+</body>
+</html>
