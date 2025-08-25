@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: flask-config
-  namespace: flask-redis-ns
-data:
-  HELLO_MSG: "{{ .Values.config.HELLO_MSG }}"
-  REDIS_HOST: "{{ .Values.config.REDIS_HOST }}"
