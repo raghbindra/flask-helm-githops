@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: flask-redis-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: {{ .Values.redis.image }}
+        ports:
+        - containerPort: {{ .Values.redis.port }}
+        volumeMounts:
+        - name: redis-storage
+          mountPath: /data
+      volumes:
+      - name: redis-storage
+        persistentVolumeClaim:
+          claimName: redis-pvc
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+  namespace: flask-redis-ns
+spec:
+  selector:
+      app: redis
+  ports:
+  - port: {{ .Values.redis.port }}
+    targetPort: {{ .Values.redis.port }}
+
+# port is the port number of the service exposed inside the cluster
+# targetPort is the port of the container inside the pod . can also be imagined as destination port .
