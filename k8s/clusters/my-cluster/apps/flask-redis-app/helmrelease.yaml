@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: flask-redis-app
+  namespace: flask-redis-ns
+spec:
+  interval: 1m
+  releaseName: flask-redis-app
+  chart:
+    spec:
+      chart: ./flask-redis-app   # path inside the repo
+      sourceRef:
+        kind: GitRepository
+        name: flask-redis-app-repo
+        namespace: flux-system
+  values:
+    image:
+      repository: custom-flask-app
+      tag: v2
+    service:
+      type: ClusterIP
+      port: 80
+    config:
+      HELLO_MSG: "Hello from FluxCD GitOps!"
+      REDIS_HOST: "redis-service"
