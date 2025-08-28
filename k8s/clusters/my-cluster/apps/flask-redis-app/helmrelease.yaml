@@ -8,7 +8,7 @@ spec:
   releaseName: flask-redis-app
   chart:
     spec:
-      chart: ./flask-redis-app   # path inside the repo
+      chart: ./k8s/flask-redis-app   # path inside the repo
       sourceRef:
         kind: GitRepository
         name: flask-redis-app-repo
