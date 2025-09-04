@@ -16,7 +16,8 @@ spec:
   values:
     image:
       repository: custom-flask-app
-      tag: v2
+      tag: v3
+      pullPolicy: IfNotPresent
     service:
       type: ClusterIP
       port: 80
