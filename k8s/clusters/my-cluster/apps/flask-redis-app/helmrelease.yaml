@@ -20,7 +20,7 @@ spec:
       pullPolicy: IfNotPresent
     service:
       type: ClusterIP
-      port: 80
+      port: 5000
     config:
       HELLO_MSG: "Hello from FluxCD GitOps!"
       REDIS_HOST: "redis-service"
