@@ -41,7 +41,6 @@ spec:
               key: APP_PASSWORD
 
 
----
 
 # apiVersion: v1
 # kind: Service
