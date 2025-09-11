@@ -39,21 +39,3 @@ spec:
             secretKeyRef:
               name: app-secret
               key: APP_PASSWORD
-
-
-
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: flask-service
-#   namespace: flask-redis-ns
-# spec:
-#   selector:
-#     app: flask
-#   ports:
-#   - port: {{ .Values.service.port }}
-#     targetPort: {{ .Values.service.port }}
-#     {{- if eq .Values.service.type "NodePort" }}
-#     nodePort: {{ .Values.service.nodePort }}
-#     {{- end }}
-#   type: {{ .Values.service.type }}
