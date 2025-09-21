@@ -26,8 +26,8 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ .Values.service.targetPort | default .Values.service.port }}
+                name: {{ include "flask-redis-app.fullname" $ }}
                 port:
-                  number: {{ .Values.service.port }}
+                  number: {{ $.Values.service.port }}
           {{- end }}
     {{- end }}
