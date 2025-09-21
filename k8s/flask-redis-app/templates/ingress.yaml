@@ -26,8 +26,8 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ printf "%s-%s" $.Release.Name $.Chart.Name }}
+                name: {{ .Values.service.targetPort | default .Values.service.port }}
                 port:
-                  number: {{ $.Values.service.port }}
+                  number: {{ .Values.service.port }}
           {{- end }}
     {{- end }}
