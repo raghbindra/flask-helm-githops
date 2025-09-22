@@ -7,13 +7,13 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: flask
+      {{- include "flask-redis-app.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
       labels:
-        app: flask
+        {{- include "flask-redis-app.selectorLabels" . | nindent 8 }}
     spec:
       containers:
       - name: flask
