@@ -4,20 +4,19 @@ kind: Ingress
 metadata:
   name: {{ include "flask-redis-app.fullname" . }}
   labels:
-    {{- include "flask-redis-app.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+    {{- include "flask-redis-app.labels" $ | nindent 4 }}
+  {{- with $.Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  ingressClassName: {{ .Values.ingress.className }}
-  {{- end }}
-  {{- if .Values.ingress.tls }}
+  ingressClassName: {{ $.Values.ingress.className }}
+  {{- if $.Values.ingress.tls }}
   tls:
-    {{- toYaml .Values.ingress.tls | nindent 2 }}
-{{- end }}
+    {{- toYaml $.Values.ingress.tls | nindent 2 }}
+  {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
+    {{- range $.Values.ingress.hosts }}
     - host: {{ .host }}
       http:
         paths:
@@ -26,8 +25,14 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ include "flask-redis-app.fullname" . }}
+                {{- /* prefer explicit configured service.name if present, else use fullname helper */}}
+                {{- with $.Values.service }}
+                name: {{ .name | default (include "flask-redis-app.fullname" $) }}
+                {{- else }}
+                name: {{ include "flask-redis-app.fullname" $ }}
+                {{- end }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}
     {{- end }}
+{{- end }}
