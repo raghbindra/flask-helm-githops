@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ default .Release.Name .Values.service.name }}
+  name: {{ .Values.service.name | default .Release.Name }}
   labels:
     {{- include "flask-redis-app.labels" . | nindent 4 }}
 spec:
@@ -12,4 +12,4 @@ spec:
       targetPort: {{ .Values.service.targetPort | default .Values.service.port }}
       protocol: TCP
   selector:
-    {{- include "flask-redis-app.selectorLabels" $root | nindent 4 }}
+    {{- include "flask-redis-app.selectorLabels" . | nindent 4 }}

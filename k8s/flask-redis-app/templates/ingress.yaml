@@ -25,7 +25,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ default .Release.Name .Values.service.name }}
+                name: {{ $.Values.service.name | default $.Release.Name }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}
