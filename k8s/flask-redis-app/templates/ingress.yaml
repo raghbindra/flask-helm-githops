@@ -25,12 +25,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                {{- /* prefer explicit configured service.name if present, else use fullname helper */}}
-                {{- with $.Values.service }}
-                name: {{ .name | default (include "flask-redis-app.fullname" $) }}
-                {{- else }}
-                name: {{ include "flask-redis-app.fullname" $ }}
-                {{- end }}
+                name: {{ default .Release.Name .Values.service.name }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}

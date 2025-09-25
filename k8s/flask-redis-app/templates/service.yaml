@@ -1,25 +1,15 @@
-{{- /*
-Compute service name in a variable so the metadata.name line stays clean YAML.
-*/ -}}
-{{- $root := $ -}}
-{{- $svcName := default (include "flask-redis-app.fullname" $root) (and (index $root "Values") (index $root "Values").service.name) -}}
-{{- /* Note: the above 'and' expression is defensive; if you prefer simpler use:
-     {{- $svcName := default (include "flask-redis-app.fullname" $root) $.Values.service.name -}}
-     But the simpler one will error if $.Values or $.Values.service is nil in some templates.
-*/ -}}
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $svcName }}
+  name: {{ default .Release.Name .Values.service.name }}
   labels:
-    {{- include "flask-redis-app.labels" $root | nindent 4 }}
+    {{- include "flask-redis-app.labels" . | nindent 4 }}
 spec:
-  type: {{ $.Values.service.type }}
+  type: {{ .Values.service.type }}
   ports:
     - name: http
-      port: {{ $.Values.service.port }}
-      targetPort: {{ $.Values.service.targetPort | default $.Values.service.port }}
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort | default .Values.service.port }}
       protocol: TCP
   selector:
     {{- include "flask-redis-app.selectorLabels" $root | nindent 4 }}
