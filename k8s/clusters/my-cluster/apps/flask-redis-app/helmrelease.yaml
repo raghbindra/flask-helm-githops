@@ -17,7 +17,7 @@ spec:
     fullnameOverride: flask-redis-app
     image:
       repository: custom-flask-app
-      tag: v3
+      tag: v4
       pullPolicy: IfNotPresent
     service:
       type: ClusterIP
