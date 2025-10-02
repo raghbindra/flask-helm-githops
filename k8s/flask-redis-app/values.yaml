@@ -76,13 +76,12 @@ secret:
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: flask-basic-auth
     nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - flask'
   enabled: true
   className: "nginx"
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
   hosts:
     - host: flask-helm.local
       paths:
