@@ -8,6 +8,8 @@ spec:
   # path is relative to the root of the GitRepository artifact (from flux-system source)
   path: ./k8s/clusters/my-cluster/apps
   prune: true
+  dependsOn:
+    - name: apps-prereqs
   sourceRef:
     kind: GitRepository
     name: flux-system
