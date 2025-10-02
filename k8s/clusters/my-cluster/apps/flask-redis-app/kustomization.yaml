@@ -4,3 +4,4 @@ resources:
   - helm-namespace.yaml
   - gitrepository.yaml
   - helmrelease.yaml
+  - basic-auth-secret.yaml
