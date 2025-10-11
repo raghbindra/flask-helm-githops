@@ -16,7 +16,7 @@ spec:
   values:
     fullnameOverride: flask-redis-app
     image:
-      repository: custom-flask-app
+      repository: restart999/custom-flask-app
       tag: v4
       pullPolicy: IfNotPresent
     service:
