@@ -1,0 +1,22 @@
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImageUpdateAutomation
+# metadata:
+#   name: automate-custom-flask
+#   namespace: flux-system
+# spec:
+#   interval: 1m
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system        # replace if your GitRepository has a different name
+#   git:
+#     checkout:
+#       ref:
+#         branch: main
+#     commit:
+#       author:
+#         name: flux-image-bot
+#         email: flux-image-bot@example.com
+#     push:
+#       branch: main
+#   update:
+#     strategy: Setters
