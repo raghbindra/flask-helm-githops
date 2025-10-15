@@ -7,3 +7,4 @@ resources:
 - apps-prereqs-kustomization.yaml
 - image-policy.yaml
 - image-repo.yaml
+- image-automation.yaml
