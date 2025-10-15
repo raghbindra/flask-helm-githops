@@ -5,3 +5,5 @@ resources:
 - gotk-sync.yaml
 - apps-kustomization.yaml
 - apps-prereqs-kustomization.yaml
+- image-policy.yaml
+- image-repo.yaml

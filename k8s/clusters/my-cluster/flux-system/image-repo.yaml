@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: custom-flask-app
+  namespace: flux-system
+spec:
+  image: docker.io/restart999/custom-flask-app
+  interval: 1m
+  secretRef:
+    name: docker-flux-secret

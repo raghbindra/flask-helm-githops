@@ -1,0 +1,11 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: custom-flask-app-policy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: custom-flask-app
+  policy:
+    semver:
+      range: ">=0.0.0"     # pick latest semver style; adjust if you tag differently
