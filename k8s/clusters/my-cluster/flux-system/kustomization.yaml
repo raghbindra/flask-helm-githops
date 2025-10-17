@@ -8,3 +8,4 @@ resources:
 - image-policy.yaml
 - image-repo.yaml
 - image-automation.yaml
+- rbac-image-toolkit.yaml
