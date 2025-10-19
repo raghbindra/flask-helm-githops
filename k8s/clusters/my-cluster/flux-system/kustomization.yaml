@@ -9,3 +9,4 @@ resources:
 - image-repo.yaml
 - image-automation.yaml
 - rbac-image-toolkit.yaml
+- rbac-flux-lease.yaml
