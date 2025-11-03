@@ -27,10 +27,14 @@ jobs:
       - name: Build, tag and push
         run: |
           IMAGE="${{ secrets.DOCKERHUB_USERNAME }}/custom-flask-app"
-          docker build -f app1/Dockerfile -t "${IMAGE}:${{ github.sha }}" app1
-          docker tag "${IMAGE}:${{ github.sha }}" "${IMAGE}:${{ env.SHORT_SHA }}"
-          docker tag "${IMAGE}:${{ github.sha }}" "${IMAGE}:latest"
-          docker push "${IMAGE}:${{ github.sha }}"
-          docker push "${IMAGE}:${{ env.SHORT_SHA }}"
-          docker push "${IMAGE}:${{ env.SEMVER_TAG }}"
-          docker push "${IMAGE}:latest"
+          echo "Building and pushing: ${IMAGE}"
+          docker buildx create --use --driver docker-container || true
+          docker buildx build \
+            --platform linux/amd64 \
+            --file app1/Dockerfile \
+            --tag "${IMAGE}:${GITHUB_SHA}" \
+            --tag "${IMAGE}:${SHORT_SHA}" \
+            --tag "${IMAGE}:${SEMVER_TAG}" \
+            --tag "${IMAGE}:latest" \
+            --push \
+            app1
