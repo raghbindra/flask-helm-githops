@@ -20,7 +20,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set SHORT_SHA env
-        run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
+        run: |
+          echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
+          echo "SEMVER_TAG=v0.0.${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Build, tag and push
         run: |
@@ -30,4 +32,5 @@ jobs:
           docker tag "${IMAGE}:${{ github.sha }}" "${IMAGE}:latest"
           docker push "${IMAGE}:${{ github.sha }}"
           docker push "${IMAGE}:${{ env.SHORT_SHA }}"
+          docker push "${IMAGE}:${{ env.SEMVER_TAG }}"
           docker push "${IMAGE}:latest"
