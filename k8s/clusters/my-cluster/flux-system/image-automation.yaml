@@ -19,7 +19,7 @@ spec:
     push:
       branch: main
   update:
-    strategy:
+    strategy: Regexp
       regexp:
         # file path relative to repo root (folder containing the files you want updated)
         path: "k8s/clusters/my-cluster/apps/flask-redis-app"
