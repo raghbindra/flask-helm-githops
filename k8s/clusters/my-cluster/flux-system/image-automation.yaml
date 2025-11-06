@@ -1,4 +1,4 @@
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
   name: automate-custom-flask
@@ -19,4 +19,10 @@ spec:
     push:
       branch: main
   update:
-    strategy: Setters
+    strategy:
+      regexp:
+        # file path relative to repo root (folder containing the files you want updated)
+        path: "k8s/clusters/my-cluster/apps/flask-redis-app"
+        # regexp to find the image line and replace with the new tag
+        pattern: '(^\s*tag:\s*)v[0-9A-Za-z\.\-]+(\s*$)'
+        replace: '${1}{{ .Tag }}${2}'
