@@ -1,0 +1,7 @@
+apiVersion: kpt.dev/v1
+kind: Setters
+metadata:
+  name: setters
+setters:
+- name: image.tag
+  value: "v4"
