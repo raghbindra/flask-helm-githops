@@ -17,7 +17,7 @@ spec:
     fullnameOverride: flask-redis-app
     image:
       repository: restart999/custom-flask-app
-      tag: v4 # {"$kpt-set":"image.tag"}
+      tag: {"$kpt-set":"image.tag"}
       pullPolicy: IfNotPresent
     service:
       type: ClusterIP
