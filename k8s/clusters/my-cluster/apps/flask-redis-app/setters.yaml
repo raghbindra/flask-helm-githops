@@ -4,4 +4,4 @@ metadata:
   name: setters
 setters:
 - name: image.tag
-  value: "v4"
+  value: "v0.0.18"
