@@ -20,4 +20,4 @@ spec:
       branch: main
   update:
     strategy: Setters
-    path: k8s/clusters/my-cluster/apps/flask-redis-app
+    path: k8s/clusters/my-cluster/apps/flask-redis-app/kpt
