@@ -7,7 +7,7 @@ spec:
   interval: 1m
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: flask-redis-app-repo
   git:
     checkout:
       ref:
@@ -20,4 +20,4 @@ spec:
       branch: main
   update:
     strategy: Setters
-    path: k8s/clusters/my-cluster/apps/flask-redis-app/kpt
+    path: k8s/flask-redis-app
