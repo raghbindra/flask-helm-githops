@@ -14,10 +14,7 @@ spec:
         name: flask-redis-app-repo
         namespace: flux-system
   values:
-    fullnameOverride: flask-redis-app
-    image:
-      repository: restart999/custom-flask-app
-      pullPolicy: IfNotPresent
+    {}
     service:
       type: ClusterIP
       port: 5000
