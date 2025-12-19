@@ -14,7 +14,6 @@ spec:
         name: flask-redis-app-repo
         namespace: flux-system
   values:
-    {}
     service:
       type: ClusterIP
       port: 5000
